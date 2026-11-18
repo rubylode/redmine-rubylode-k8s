@@ -1,0 +1,54 @@
+# A throwaway Redmine 7 to try the plugin in, with a fake Kubernetes API next to it. Not a real tracker or a real cluster.
+# Start: ruby bin/demo up, then open http://127.0.0.1:3018 (admin / admin).
+# The repository is mounted as the plugin, so a code change shows after "ruby bin/demo restart".
+# Wipe it: ruby bin/demo reset
+# Tests: ruby bin/test (runs the "test" service below)
+services:
+  redmine:
+    image: redmine:7.0.2
+    container_name: redmine-k8s-dev
+    ports:
+      - "127.0.0.1:3018:3000"
+    environment:
+      # The image ships without the development gems, so production is the mode it can boot in.
+      RAILS_ENV: production
+      # The token and the certificate authority of the fake cluster, put here by bin/demo up. Made up, and only the fake accepts them.
+      K8S_DEMO_TOKEN: ${K8S_DEMO_TOKEN:-}
+      K8S_DEMO_CA: ${K8S_DEMO_CA:-}
+    depends_on:
+      - fake_kubernetes
+    volumes:
+      - .:/usr/src/redmine/plugins/redmine_rubylode_k8s
+      - redmine-k8s-files:/usr/src/redmine/files
+      - redmine-k8s-sqlite:/usr/src/redmine/sqlite
+
+  # Answers the three calls the plugin makes over https, from the scrubbed fixtures, with their times moved to now.
+  # Switch what it reports with: ruby bin/demo scenario one_not_ready
+  fake_kubernetes:
+    image: redmine:7.0.2
+    container_name: fake-kubernetes-dev
+    ports:
+      - "127.0.0.1:9118:8443"
+    environment:
+      FAKE_KUBERNETES_PORT: "8443"
+      FAKE_KUBERNETES_HOST_NAMES: fake_kubernetes
+      FAKE_KUBERNETES_CA_PATH: /demo/certificate_authority.txt
+      FAKE_KUBERNETES_SHIFT_TO_NOW: "1"
+    command: ruby /plugin/test/support/fake_kubernetes_api.rb
+    volumes:
+      - .:/plugin:ro
+      - ./tmp/demo:/demo
+
+  test:
+    build:
+      context: .
+      dockerfile: docker/test.Dockerfile
+    profiles: ["test"]
+    environment:
+      RAILS_ENV: test
+    volumes:
+      - .:/usr/src/redmine/plugins/redmine_rubylode_k8s
+
+volumes:
+  redmine-k8s-files:
+  redmine-k8s-sqlite:

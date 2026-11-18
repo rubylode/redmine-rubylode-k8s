@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+# Rubylode Kubernetes: cluster status from the Kubernetes API for Redmine
+# Copyright (C) 2026  Nick Gorbikoff
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+# Run the plugin's tests inside the Redmine 7 test image. Pass a test file to run just that one.
+#   bin/test                                   all unit and integration tests
+#   bin/test test/integration/plugin_registered_test.rb
+Dir.chdir(File.expand_path("..", __dir__))
+
+target = ARGV.first
+runner = if target
+  "bundle exec ruby -Itest plugins/redmine_rubylode_k8s/#{target}"
+else
+  "bundle exec rake redmine:plugins:test NAME=redmine_rubylode_k8s"
+end
+
+inside = <<~SH
+  cd /usr/src/redmine &&
+  printf 'test:\\n  adapter: sqlite3\\n  database: /tmp/redmine_test.sqlite3\\n' > config/database.yml &&
+  bundle exec rake generate_secret_token db:migrate redmine:plugins:migrate >/dev/null &&
+  #{runner}
+SH
+
+exec "docker", "compose", "--profile", "test", "run", "--rm", "test", "sh", "-c", inside

@@ -1,0 +1,195 @@
+en:
+  rubylode_k8s:
+    status_page:
+      title: Kubernetes
+    settings_page:
+      column_left: Left
+      column_right: Right
+      cluster_line: "%{name}: %{token_state}; %{certificate_authority_state}"
+      token_variable_set: "token variable %{variable} set"
+      token_variable_not_set: "token variable %{variable} not set"
+      token_variable_not_allowed: "token variable %{variable} not allowed: the name must start with K8S_"
+      certificate_authority_variable_set: "CA variable %{variable} set"
+      certificate_authority_variable_not_set: "CA variable %{variable} not set"
+      certificate_authority_variable_without_certificate: "CA variable %{variable} set, but it holds no certificate"
+      certificate_authority_variable_not_allowed: "CA variable %{variable} not allowed: the name must start with K8S_"
+      certificate_authority_system_trust_store: "CA system trust store"
+      token_file_found: "token file found"
+      token_file_not_found: "token file not found"
+      certificate_authority_file_found: "CA file found"
+      certificate_authority_file_not_found: "CA file not found"
+      placements_heading: Show the block on
+      placements_intro: 'Besides the macro, the page and the My page block, the block can go on these pages. All of them follow "Who may see the block" and share one cache.'
+    settings:
+      clusters:
+        label: Clusters
+        hint: "One cluster per line: Name | address | token variable | CA variable. The variables are names of environment variables: the token variable holds a service account token, the CA variable the cluster's certificate authority as PEM text. Nothing of either is saved here. Set them before Redmine starts. Both names must start with K8S_. Without a CA variable the system's trusted certificate authorities are used. The address must be https. For the cluster Redmine itself runs in, write Name | in-cluster: the pod's own service account is used, and nothing else is given. Lines starting with # are ignored. Below the box you see whether each variable, or each file for in-cluster, is set."
+        example: |-
+          Production | https://k8s.example.com:6443 | K8S_PRODUCTION_TOKEN | K8S_PRODUCTION_CA
+          Here | in-cluster
+      links:
+        label: Links
+        hint: "One line per cluster, to turn names into links: Name | cluster link | node link | pod link. The name must be one of the clusters above. Every link is optional; leave it empty for no link. {node} stands for the node name in the node link, {namespace} and {pod} for the namespace and the pod name in the pod link. Each value is encoded before it goes in. Only http:// and https:// links are accepted. No token is ever sent to a link. Lines starting with # are ignored."
+        example: |-
+          Production | https://argocd.example.com/applications | | https://argocd.example.com/applications?search={pod}
+      pending_grace_minutes:
+        label: Pending grace minutes
+        hint: "A pod may stay Pending this many minutes before it counts as in trouble."
+      restart_threshold:
+        label: Restart threshold
+        hint: "A container with this many restarts or more, the last within the hour, counts as restarting and puts its pod in trouble."
+      namespaces_to_ignore:
+        label: Namespaces to ignore
+        hint: "One namespace per line. The pods of these namespaces are never listed."
+        example: |-
+          kube-system
+          monitoring
+      cache_seconds:
+        label: Cache seconds
+        hint: "Each cluster is asked at most once in this many seconds."
+      failure_cache_seconds:
+        label: Failure cache seconds
+        hint: "After a failed answer, that cluster is left alone for this many seconds."
+      timeout_seconds:
+        label: Timeout seconds
+        hint: "A request to Kubernetes is given up after this many seconds."
+      block_title:
+        label: Block title
+        hint: "The heading of the block and the name of the top menu link."
+      visibility:
+        label: Who may see the block
+        logged_in: Everyone who is signed in
+        admins: Administrators only
+      show_on_welcome_page:
+        label: Welcome page
+        hint: "Adds the block to Redmine's home page for the people who may see it."
+      welcome_page_column:
+        label: Column
+      show_on_my_page:
+        label: My page
+        hint: "Adds the block to the default My page, for people who have not arranged their own. Everyone can still add it from the block list."
+      show_on_project_overview:
+        label: Project Overview page
+        hint: "Adds the block to every project's Overview page."
+      project_overview_column:
+        label: Column
+      show_on_matching_pages:
+        label: Pages matching these paths
+        hint: "Adds a small version of the block to each page whose path matches one of the paths below."
+      matching_page_paths:
+        label: Paths
+        hint: "One path per line, starting with /. * stands for anything inside one path segment, ** for anything. A query string and a trailing slash are ignored. /admin, /settings, /login and /account match only a path that starts with that prefix."
+        example: |-
+          /issues
+          /projects/*/issues
+      show_in_top_menu:
+        label: Show in the top menu
+        hint: "Adds a link to /status/k8s to the top menu, for the people who may see the block."
+    columns:
+      node: Node
+      status: Status
+      cpu: CPU
+      memory: Memory
+      namespace: Namespace
+      pod: Pod
+      phase: Phase
+      reason: Reason
+      detail: Detail
+    status:
+      unavailable: Status unavailable
+      no_metrics: no metrics
+      pods_unchecked: Pods could not be checked
+      not_set_up: Kubernetes is not set up yet
+    summary:
+      nodes_ready:
+        one: "All %{count} node ready"
+        other: "All %{count} nodes ready"
+      nodes_not_ready:
+        one: "%{not_ready} of %{count} node not ready"
+        other: "%{not_ready} of %{count} nodes not ready"
+      no_nodes: "No nodes found"
+      no_pods_in_trouble: "no pods in trouble"
+      pods_in_trouble:
+        one: "%{count} pod in trouble"
+        other: "%{count} pods in trouble"
+      pods_not_checked:
+        one: "pods not checked on %{count} cluster"
+        other: "pods not checked on %{count} clusters"
+      clusters_unavailable:
+        one: "%{count} cluster unavailable"
+        other: "%{count} clusters unavailable"
+    pods:
+      truncated: "Only the first %{count} pods were checked"
+      more_in_trouble: "and %{count} more"
+    detail:
+      restarts:
+        one: "%{count} restart"
+        other: "%{count} restarts"
+      last_restart: "the last %{duration} ago"
+      pending: "Pending %{duration}"
+    elapsed:
+      minutes: "%{count} min"
+      hours: "%{count} h"
+      days: "%{count} d"
+    hints:
+      reason: "Why: %{reason}"
+      pods_reason: "Pods not checked: %{reason}"
+      metrics_reason: "No usage bars: %{reason}"
+      not_configured: "The block is not set up yet. Add a cluster in the plugin settings."
+      not_configured_link: Open the settings
+    widget:
+      pods_not_checked: pods not checked
+    status_plugin:
+      missing_html: "Install %{link} to see this with the other status blocks on one page."
+      installed_html: "Rubylode Status is installed, so this block shows on the %{link}."
+      status_page: Status page
+    errors:
+      cluster_line_prefix: "Clusters, line %{line_number}: %{message}"
+      cluster_line_field_count: "needs 2 fields (Name | in-cluster) or 3 to 4 fields (Name | address | token variable | CA variable) separated by |, found %{found}"
+      in_cluster_takes_no_more_fields: "in-cluster takes no more fields: write only Name | in-cluster"
+      line_name_missing: the name is empty
+      line_name_duplicate: "the name %{name} is already used"
+      address_invalid: "the address must start with https:// and name a host"
+      address_has_extras: "the address must be only a scheme, a host, a port and a path, without a user name, a query or a fragment"
+      plain_http_refused: "a plain http:// address is refused: the token would travel unencrypted. Use https://"
+      token_variable_invalid: "the token variable must start with K8S_ and use only capital letters, digits and underscores. Redmine's own secrets cannot be named here."
+      certificate_authority_variable_invalid: "the certificate authority variable must start with K8S_ and use only capital letters, digits and underscores, or be left empty"
+      namespace_line_prefix: "Namespaces to ignore, line %{line_number}: %{message}"
+      namespace_invalid: "%{name} is not a namespace name: use lowercase letters, digits and hyphens, one name per line"
+      link_line_prefix: "Links, line %{line_number}: %{message}"
+      link_line_field_count: "needs at most %{maximum} fields separated by | (Name | cluster link | node link | pod link), found %{found}"
+      link_unknown_cluster: "no cluster named %{name} in Clusters"
+      link_invalid: "the %{kind} must start with http:// or https://, name a host and have no user name"
+      link_placeholder_not_allowed: "%{placeholder} cannot be used in the %{kind}: it takes %{allowed}"
+      link_no_placeholders: no placeholders
+      link_authority_has_placeholder: "the %{kind} cannot have a placeholder before the first / after http:// or https://, or a name could pick the domain it links to"
+      link_kind_cluster: cluster link
+      link_kind_node: node link
+      link_kind_pod: pod link
+      number_invalid: "%{field} must be a whole number of at least %{minimum}"
+      column_invalid: The column must be Left or Right
+      visibility_invalid: Who may see the block must be one of the listed choices
+      block_title_blank: The block title cannot be empty
+      path_line_prefix: "Pages matching these paths, line %{line_number}: %{message}"
+      path_must_start_with_slash: "a path must start with / (for example /issues)"
+      path_has_host: "give the path only, without http:// or a host name"
+      path_has_query: "leave out the ? and # parts; query strings are ignored"
+      path_has_space: "a path cannot contain spaces"
+      path_too_long: "a path can have at most %{maximum} characters"
+      path_too_many: "at most %{maximum} paths can be listed"
+      token_missing: "No token for %{name}: its token variable is not set in the environment, or its name does not start with K8S_"
+      certificate_authority_missing: "The certificate authority variable of %{name} holds no certificate: it is not set, empty, does not start with K8S_, or has no PEM certificate"
+      in_cluster_token_missing: "The service account token of this pod could not be read: its token file is missing or empty"
+      in_cluster_certificate_authority_missing: "The certificate authority of this pod could not be read: its ca.crt file is missing or holds no certificate"
+      insecure_connection: "The address must use https"
+      redirect_refused: "Kubernetes answered with a redirect, which is not followed"
+      kubernetes_status: "Kubernetes answered %{status}"
+      answer_unreadable: "The answer from Kubernetes could not be read"
+      answer_unreadable_because: "The answer from Kubernetes could not be read (%{error_class})"
+      token_line_break: "The token variable of %{name} holds a line break, so the token is not sent"
+      in_cluster_token_line_break: "The service account token of this pod holds a line break, so the token is not sent"
+      answer_too_large: "The answer from Kubernetes was too large"
+      unreachable: "Kubernetes could not be reached (%{error_class})"
+  my:
+    blocks:
+      rubylode_k8s_status: Kubernetes

@@ -1,0 +1,102 @@
+#!/usr/bin/env ruby
+# Rubylode Kubernetes: cluster status from the Kubernetes API for Redmine
+# Copyright (C) 2026  Nick Gorbikoff
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+# Runs the throwaway Redmine this plugin is developed and reviewed in, on http://127.0.0.1:3018, next to a fake
+# Kubernetes API on https://127.0.0.1:9118 (inside the compose network: https://fake_kubernetes:8443).
+#
+#   bin/demo up        start the fake, wait for its certificate authority, start Redmine with that and the fake's token in its
+#                      environment, run the plugin migrations and load the demo data (once; running it again changes nothing)
+#   bin/demo restart   restart Redmine, to pick up a change to the plugin (it runs in production mode and caches code)
+#   bin/demo scenario NAME   switch what the fake reports: all_ready, one_not_ready, no_metrics or unavailable (the page caches for 5 seconds)
+#   bin/demo down      stop it, keep the data
+#   bin/demo reset     stop it and wipe the data
+require "fileutils"
+require "net/http"
+require "openssl"
+
+ROOT = File.expand_path("..", __dir__)
+PORT = 3018
+FAKE_PORT = 9118
+READY_SECONDS = 240
+SEED_SCRIPT = "plugins/redmine_rubylode_k8s/script/seed_demo.rb"
+DEMO_DIRECTORY = File.join(ROOT, "tmp", "demo")
+CERTIFICATE_AUTHORITY_FILE = File.join(DEMO_DIRECTORY, "certificate_authority.txt")
+FAKE_TOKEN = "fake.kubernetes.token-not-a-secret".freeze
+
+def compose(*arguments)
+  system("docker", "compose", *arguments, chdir: ROOT) || abort("docker compose #{arguments.join(' ')} failed")
+end
+
+def wait_until_ready
+  uri = URI("http://127.0.0.1:#{PORT}/login")
+  deadline = Time.now + READY_SECONDS
+  loop do
+    begin
+      return puts("Redmine is up at http://127.0.0.1:#{PORT}") if Net::HTTP.get_response(uri).code == "200"
+    rescue SystemCallError, EOFError, Net::ReadTimeout
+      nil
+    end
+    abort("Redmine did not answer within #{READY_SECONDS} seconds") if Time.now > deadline
+    sleep 3
+  end
+end
+
+# The fake makes a new certificate authority each time it starts and writes it to a file in tmp/demo.
+def wait_for_certificate_authority
+  deadline = Time.now + 60
+  until File.size?(CERTIFICATE_AUTHORITY_FILE)
+    abort("The fake did not write its certificate authority within 60 seconds") if Time.now > deadline
+    sleep 1
+  end
+  text = File.read(CERTIFICATE_AUTHORITY_FILE)
+  OpenSSL::X509::Certificate.new(text)
+  text
+end
+
+case ARGV.first
+when "up"
+  FileUtils.mkdir_p(DEMO_DIRECTORY)
+  FileUtils.rm_f(CERTIFICATE_AUTHORITY_FILE)
+  compose("up", "-d", "--force-recreate", "fake_kubernetes")
+  ENV["K8S_DEMO_CA"] = wait_for_certificate_authority
+  ENV["K8S_DEMO_TOKEN"] = FAKE_TOKEN
+  compose("up", "-d", "--force-recreate", "redmine")
+  wait_until_ready
+  compose("exec", "-T", "redmine", "bundle", "exec", "rake", "redmine:plugins:migrate")
+  compose("exec", "-T", "redmine", "bin/rails", "runner", SEED_SCRIPT)
+when "scenario"
+  name = ARGV[1] || abort("usage: bin/demo scenario all_ready|one_not_ready|no_metrics|unavailable")
+  store = OpenSSL::X509::Store.new
+  store.add_cert(OpenSSL::X509::Certificate.new(File.read(CERTIFICATE_AUTHORITY_FILE)))
+  http = Net::HTTP.new("127.0.0.1", FAKE_PORT)
+  http.use_ssl = true
+  http.cert_store = store
+  response = http.post("/__scenario/#{name}", "")
+  abort("The fake refused: #{response.body}") unless response.code == "200"
+  puts "The fake now reports #{name}"
+when "restart"
+  compose("restart", "redmine")
+  wait_until_ready
+when "down"
+  compose("down")
+when "reset"
+  compose("down", "-v")
+  FileUtils.rm_rf(DEMO_DIRECTORY)
+else
+  abort(File.read(__FILE__)[/\A#!.*?\n(?:#.*\n)+\n((?:#.*\n)+)/m, 1].to_s.gsub(/^# ?/, ""))
+end

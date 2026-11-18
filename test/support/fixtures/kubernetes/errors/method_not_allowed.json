@@ -1,0 +1,9 @@
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {},
+  "status": "Failure",
+  "message": "the server does not allow this method on the requested resource",
+  "reason": "MethodNotAllowed",
+  "code": 405
+}

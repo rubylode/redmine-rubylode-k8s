@@ -1,0 +1,188 @@
+/*
+ * Rubylode Kubernetes. Every colour and size is a custom property on .rubylode-k8s, so a theme restyles the block by
+ * setting them. Where the theme already has a variable (Redmine 7 ships --oc-* colours) the default follows it.
+ * Green is Ready, amber is Unknown, red is NotReady.
+ */
+.rubylode-k8s {
+  --rubylode-k8s-text: var(--oc-gray-9, #212529);
+  --rubylode-k8s-text-muted: var(--oc-gray-6, #6b7480);
+  --rubylode-k8s-border: var(--oc-gray-3, #dee2e6);
+  --rubylode-k8s-header-background: var(--oc-gray-1, #f1f3f5);
+  --rubylode-k8s-row-hover-background: var(--oc-gray-0, #f8f9fa);
+  --rubylode-k8s-fine-color: var(--oc-green-8, #2b8a3e);
+  --rubylode-k8s-attention-color: var(--oc-orange-9, #a15c07);
+  --rubylode-k8s-broken-color: var(--oc-red-8, #c92a2a);
+  --rubylode-k8s-warning-color: var(--oc-orange-7, #d9730d);
+  --rubylode-k8s-bar-track: var(--oc-gray-2, #e9ecef);
+  --rubylode-k8s-bar-width: 72px;
+  --rubylode-k8s-bar-height: 8px;
+  --rubylode-k8s-gap: 12px;
+
+  color: var(--rubylode-k8s-text);
+  margin-bottom: var(--rubylode-k8s-gap);
+}
+
+@media (prefers-color-scheme: dark) {
+  .rubylode-k8s {
+    --rubylode-k8s-text: #e9ecef;
+    --rubylode-k8s-text-muted: #9aa3ad;
+    --rubylode-k8s-border: #3b4148;
+    --rubylode-k8s-header-background: #2a2f35;
+    --rubylode-k8s-row-hover-background: #242a30;
+    --rubylode-k8s-fine-color: #69db7c;
+    --rubylode-k8s-attention-color: #ffc078;
+    --rubylode-k8s-broken-color: #ff8787;
+    --rubylode-k8s-warning-color: #ffa94d;
+    --rubylode-k8s-bar-track: #3b4148;
+  }
+}
+
+/* A theme that marks its dark mode on the page wins over the system setting. */
+:root[data-theme="dark"] .rubylode-k8s,
+:root[data-color-scheme="dark"] .rubylode-k8s,
+body.dark .rubylode-k8s {
+  --rubylode-k8s-text: #e9ecef;
+  --rubylode-k8s-text-muted: #9aa3ad;
+  --rubylode-k8s-border: #3b4148;
+  --rubylode-k8s-header-background: #2a2f35;
+  --rubylode-k8s-row-hover-background: #242a30;
+  --rubylode-k8s-fine-color: #69db7c;
+  --rubylode-k8s-attention-color: #ffc078;
+  --rubylode-k8s-broken-color: #ff8787;
+  --rubylode-k8s-warning-color: #ffa94d;
+  --rubylode-k8s-bar-track: #3b4148;
+}
+
+.rubylode-k8s-title {
+  margin: 0 0 6px;
+}
+
+.rubylode-k8s-summary {
+  margin: 0 0 var(--rubylode-k8s-gap);
+  font-weight: 600;
+}
+
+.rubylode-k8s-summary.is-all-fine {
+  color: var(--rubylode-k8s-fine-color);
+}
+
+.rubylode-k8s-summary.is-trouble {
+  color: var(--rubylode-k8s-broken-color);
+}
+
+.rubylode-k8s-summary.is-unavailable {
+  color: var(--rubylode-k8s-attention-color);
+}
+
+.rubylode-k8s-cluster {
+  margin-bottom: var(--rubylode-k8s-gap);
+}
+
+.rubylode-k8s-cluster-name {
+  margin: 0 0 4px;
+}
+
+.rubylode-k8s-unavailable {
+  margin: 0 0 4px;
+  font-weight: 600;
+  color: var(--rubylode-k8s-attention-color);
+}
+
+.rubylode-k8s-hint {
+  margin: 0 0 4px;
+  color: var(--rubylode-k8s-text-muted);
+}
+
+.rubylode-k8s-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.rubylode-k8s .rubylode-k8s-table th,
+.rubylode-k8s .rubylode-k8s-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--rubylode-k8s-border);
+  text-align: left;
+}
+
+.rubylode-k8s-table thead th {
+  background: var(--rubylode-k8s-header-background);
+}
+
+.rubylode-k8s-table tbody tr:hover td {
+  background: var(--rubylode-k8s-row-hover-background);
+}
+
+.rubylode-k8s .rubylode-k8s-table td.rubylode-k8s-node-status {
+  font-weight: 600;
+}
+
+.rubylode-k8s .rubylode-k8s-table td.is-ready {
+  color: var(--rubylode-k8s-fine-color);
+}
+
+.rubylode-k8s .rubylode-k8s-table td.is-unknown {
+  color: var(--rubylode-k8s-attention-color);
+}
+
+.rubylode-k8s .rubylode-k8s-table td.is-not-ready {
+  color: var(--rubylode-k8s-broken-color);
+}
+
+.rubylode-k8s-usage {
+  white-space: nowrap;
+}
+
+.rubylode-k8s-no-metrics {
+  color: var(--rubylode-k8s-text-muted);
+}
+
+.rubylode-k8s-bar {
+  display: inline-block;
+  width: var(--rubylode-k8s-bar-width);
+  height: var(--rubylode-k8s-bar-height);
+  margin-right: 6px;
+  border-radius: var(--rubylode-k8s-bar-height);
+  background: var(--rubylode-k8s-bar-track);
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.rubylode-k8s-bar-fill {
+  display: block;
+  height: 100%;
+  background: var(--rubylode-k8s-fine-color);
+}
+
+.rubylode-k8s-bar.is-warning .rubylode-k8s-bar-fill {
+  background: var(--rubylode-k8s-warning-color);
+}
+
+.rubylode-k8s-bar.is-critical .rubylode-k8s-bar-fill {
+  background: var(--rubylode-k8s-broken-color);
+}
+
+.rubylode-k8s-bar.is-critical + .rubylode-k8s-percent {
+  color: var(--rubylode-k8s-broken-color);
+  font-weight: 600;
+}
+
+.rubylode-k8s-pods-table {
+  margin-top: var(--rubylode-k8s-gap);
+}
+
+.rubylode-k8s .rubylode-k8s-table td.rubylode-k8s-pod-reason {
+  font-weight: 600;
+  color: var(--rubylode-k8s-broken-color);
+}
+
+.rubylode-k8s-pods-unchecked,
+.rubylode-k8s-pods-truncated {
+  margin: var(--rubylode-k8s-gap) 0 4px;
+  color: var(--rubylode-k8s-warning-color);
+}
+
+.rubylode-k8s-pods-more {
+  margin: 4px 0 0;
+  color: var(--rubylode-k8s-text-muted);
+}

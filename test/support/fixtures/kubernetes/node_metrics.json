@@ -1,0 +1,34 @@
+{
+  "kind": "NodeMetricsList",
+  "apiVersion": "metrics.k8s.io/v1beta1",
+  "metadata": {},
+  "items": [
+    {
+      "metadata": {
+        "name": "node-a"
+      },
+      "usage": {
+        "cpu": "933600000n",
+        "memory": "6148924Ki"
+      }
+    },
+    {
+      "metadata": {
+        "name": "node-b"
+      },
+      "usage": {
+        "cpu": "189424438n",
+        "memory": "3880348Ki"
+      }
+    },
+    {
+      "metadata": {
+        "name": "node-c"
+      },
+      "usage": {
+        "cpu": "188307278n",
+        "memory": "4711176Ki"
+      }
+    }
+  ]
+}

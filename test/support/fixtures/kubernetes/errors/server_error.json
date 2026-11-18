@@ -1,0 +1,9 @@
+{
+  "kind": "Status",
+  "apiVersion": "v1",
+  "metadata": {},
+  "status": "Failure",
+  "message": "Internal error occurred: an unexpected error",
+  "reason": "InternalError",
+  "code": 500
+}

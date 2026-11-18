@@ -1,0 +1,164 @@
+<% settings_reader = RubylodeK8s::Settings.new(settings) %>
+<% if @validation_errors.present? %>
+  <div id="errorExplanation" class="rubylode-k8s-errors">
+    <ul>
+      <% @validation_errors.each do |message| %><li><%= message %></li><% end %>
+    </ul>
+  </div>
+<% end %>
+<% scope = "rubylode_k8s.settings" %>
+<% page_scope = "rubylode_k8s.settings_page" %>
+<% defaults = Redmine::Plugin.find(RubylodeK8s::Settings::PLUGIN_ID).settings[:default] %>
+<% text_value = ->(key) { settings[key].nil? ? defaults[key] : settings[key] } %>
+<%# Says only whether a variable or a file is there, never what it holds. %>
+<% token_state = lambda do |cluster|
+     if cluster.in_cluster
+       l("#{page_scope}.token_file_#{RubylodeK8s::InClusterAccount.token_file_present? ? 'found' : 'not_found'}")
+     elsif !cluster.token_variable.match?(RubylodeK8s::Settings::TOKEN_VARIABLE_PATTERN)
+       l("#{page_scope}.token_variable_not_allowed", variable: cluster.token_variable)
+     else
+       l("#{page_scope}.token_variable_#{cluster.token_set? ? 'set' : 'not_set'}", variable: cluster.token_variable)
+     end
+   end %>
+<%# A variable that is set but holds no certificate makes the cluster unavailable, so it is not called the system trust store. %>
+<% certificate_authority_state = lambda do |cluster|
+     variable = cluster.certificate_authority_variable
+     if cluster.in_cluster
+       l("#{page_scope}.certificate_authority_file_#{RubylodeK8s::InClusterAccount.certificate_authority_file_present? ? 'found' : 'not_found'}")
+     elsif variable.empty?
+       l("#{page_scope}.certificate_authority_system_trust_store")
+     elsif !variable.match?(RubylodeK8s::Settings::TOKEN_VARIABLE_PATTERN)
+       l("#{page_scope}.certificate_authority_variable_not_allowed", variable: variable)
+     elsif !cluster.certificate_authority_variable_set?
+       l("#{page_scope}.certificate_authority_variable_not_set", variable: variable)
+     elsif RubylodeK8s::SecureTransport.certificates_in(cluster.certificate_authority_pem).empty?
+       l("#{page_scope}.certificate_authority_variable_without_certificate", variable: variable)
+     else
+       l("#{page_scope}.certificate_authority_variable_set", variable: variable)
+     end
+   end %>
+<% column_options = ->(key) { options_for_select([[l("#{page_scope}.column_left"), "left"], [l("#{page_scope}.column_right"), "right"]], text_value.call(key)) } %>
+<% status_plugin_present = RubylodeK8s::StatusWidget.status_plugin_present? %>
+
+<%= render partial: "rubylode_k8s/status_plugin_notice" %>
+
+<p>
+  <label for="settings_clusters"><%= l("#{scope}.clusters.label") %></label>
+  <%= text_area_tag "settings[clusters]", text_value.call("clusters"), rows: 6, cols: 90, id: "settings_clusters", class: "wiki-edit", placeholder: l("#{scope}.clusters.example") %>
+  <em class="info"><%= l("#{scope}.clusters.hint") %></em>
+</p>
+
+<% clusters = settings_reader.clusters %>
+<% if clusters.any? %>
+  <ul class="rubylode-k8s-variable-state">
+    <% clusters.each do |cluster| %>
+      <li><%= l("#{page_scope}.cluster_line", name: cluster.name, token_state: token_state.call(cluster), certificate_authority_state: certificate_authority_state.call(cluster)) %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<p>
+  <label for="settings_links"><%= l("#{scope}.links.label") %></label>
+  <%= text_area_tag "settings[links]", text_value.call("links"), rows: 4, cols: 90, id: "settings_links", class: "wiki-edit", placeholder: l("#{scope}.links.example") %>
+  <em class="info"><%= l("#{scope}.links.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_pending_grace_minutes"><%= l("#{scope}.pending_grace_minutes.label") %></label>
+  <%= number_field_tag "settings[pending_grace_minutes]", text_value.call("pending_grace_minutes"), min: 0, size: 6, id: "settings_pending_grace_minutes" %>
+  <em class="info"><%= l("#{scope}.pending_grace_minutes.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_restart_threshold"><%= l("#{scope}.restart_threshold.label") %></label>
+  <%= number_field_tag "settings[restart_threshold]", text_value.call("restart_threshold"), min: 1, size: 6, id: "settings_restart_threshold" %>
+  <em class="info"><%= l("#{scope}.restart_threshold.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_namespaces_to_ignore"><%= l("#{scope}.namespaces_to_ignore.label") %></label>
+  <%= text_area_tag "settings[namespaces_to_ignore]", text_value.call("namespaces_to_ignore"), rows: 4, cols: 60, id: "settings_namespaces_to_ignore", placeholder: l("#{scope}.namespaces_to_ignore.example") %>
+  <em class="info"><%= l("#{scope}.namespaces_to_ignore.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_block_title"><%= l("#{scope}.block_title.label") %></label>
+  <%= text_field_tag "settings[block_title]", text_value.call("block_title"), size: 30, id: "settings_block_title" %>
+  <em class="info"><%= l("#{scope}.block_title.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_visibility"><%= l("#{scope}.visibility.label") %></label>
+  <%= select_tag "settings[visibility]", options_for_select([[l("#{scope}.visibility.logged_in"), "logged_in"], [l("#{scope}.visibility.admins"), "admins"]], text_value.call("visibility")), id: "settings_visibility" %>
+</p>
+
+<h3><%= l("#{page_scope}.placements_heading") %></h3>
+<p class="info"><%= l("#{page_scope}.placements_intro") %></p>
+
+<p>
+  <label for="settings_show_on_welcome_page"><%= l("#{scope}.show_on_welcome_page.label") %></label>
+  <%= hidden_field_tag "settings[show_on_welcome_page]", "0", id: nil %>
+  <%= check_box_tag "settings[show_on_welcome_page]", "1", text_value.call("show_on_welcome_page").to_s == "1", id: "settings_show_on_welcome_page" %>
+  <label for="settings_welcome_page_column" class="inline"><%= l("#{scope}.welcome_page_column.label") %></label>
+  <%= select_tag "settings[welcome_page_column]", column_options.call("welcome_page_column"), id: "settings_welcome_page_column" %>
+  <em class="info"><%= l("#{scope}.show_on_welcome_page.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_show_on_my_page"><%= l("#{scope}.show_on_my_page.label") %></label>
+  <%= hidden_field_tag "settings[show_on_my_page]", "0", id: nil %>
+  <%= check_box_tag "settings[show_on_my_page]", "1", text_value.call("show_on_my_page").to_s == "1", id: "settings_show_on_my_page" %>
+  <em class="info"><%= l("#{scope}.show_on_my_page.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_show_on_project_overview"><%= l("#{scope}.show_on_project_overview.label") %></label>
+  <%= hidden_field_tag "settings[show_on_project_overview]", "0", id: nil %>
+  <%= check_box_tag "settings[show_on_project_overview]", "1", text_value.call("show_on_project_overview").to_s == "1", id: "settings_show_on_project_overview" %>
+  <label for="settings_project_overview_column" class="inline"><%= l("#{scope}.project_overview_column.label") %></label>
+  <%= select_tag "settings[project_overview_column]", column_options.call("project_overview_column"), id: "settings_project_overview_column" %>
+  <em class="info"><%= l("#{scope}.show_on_project_overview.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_show_on_matching_pages"><%= l("#{scope}.show_on_matching_pages.label") %></label>
+  <%= hidden_field_tag "settings[show_on_matching_pages]", "0", id: nil %>
+  <%= check_box_tag "settings[show_on_matching_pages]", "1", text_value.call("show_on_matching_pages").to_s == "1", id: "settings_show_on_matching_pages" %>
+  <em class="info"><%= l("#{scope}.show_on_matching_pages.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_matching_page_paths"><%= l("#{scope}.matching_page_paths.label") %></label>
+  <%= text_area_tag "settings[matching_page_paths]", text_value.call("matching_page_paths"), rows: 4, cols: 60, id: "settings_matching_page_paths", placeholder: l("#{scope}.matching_page_paths.example") %>
+  <em class="info"><%= l("#{scope}.matching_page_paths.hint") %></em>
+</p>
+
+<% if status_plugin_present %>
+  <%# Rubylode Status owns the top menu item, so the choice is not offered. The saved value is kept. %>
+  <%= hidden_field_tag "settings[show_in_top_menu]", text_value.call("show_in_top_menu"), id: nil %>
+<% else %>
+  <p>
+    <label for="settings_show_in_top_menu"><%= l("#{scope}.show_in_top_menu.label") %></label>
+    <%= hidden_field_tag "settings[show_in_top_menu]", "0", id: nil %>
+    <%= check_box_tag "settings[show_in_top_menu]", "1", text_value.call("show_in_top_menu").to_s == "1", id: "settings_show_in_top_menu" %>
+    <em class="info"><%= l("#{scope}.show_in_top_menu.hint") %></em>
+  </p>
+<% end %>
+
+<p>
+  <label for="settings_cache_seconds"><%= l("#{scope}.cache_seconds.label") %></label>
+  <%= number_field_tag "settings[cache_seconds]", text_value.call("cache_seconds"), min: 0, size: 6, id: "settings_cache_seconds" %>
+  <em class="info"><%= l("#{scope}.cache_seconds.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_failure_cache_seconds"><%= l("#{scope}.failure_cache_seconds.label") %></label>
+  <%= number_field_tag "settings[failure_cache_seconds]", text_value.call("failure_cache_seconds"), min: 0, size: 6, id: "settings_failure_cache_seconds" %>
+  <em class="info"><%= l("#{scope}.failure_cache_seconds.hint") %></em>
+</p>
+
+<p>
+  <label for="settings_timeout_seconds"><%= l("#{scope}.timeout_seconds.label") %></label>
+  <%= number_field_tag "settings[timeout_seconds]", text_value.call("timeout_seconds"), min: 1, size: 6, id: "settings_timeout_seconds" %>
+  <em class="info"><%= l("#{scope}.timeout_seconds.hint") %></em>
+</p>

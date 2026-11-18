@@ -1,0 +1,3015 @@
+{
+  "kind": "PodList",
+  "apiVersion": "v1",
+  "metadata": {
+    "resourceVersion": "1000"
+  },
+  "items": [
+    {
+      "metadata": {
+        "namespace": "payments",
+        "name": "ledger-0",
+        "creationTimestamp": "2026-11-15T08:51:29Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:29Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:41Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:41Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:29Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "app",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-15T08:51:30Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-1:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "payments",
+        "name": "notifications-38b95bf668-j67ch",
+        "creationTimestamp": "2026-11-13T08:50:43Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:43Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:44Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:44Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:43Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "sidecar",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T08:50:44Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-1:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "payments",
+        "name": "gateway-c9dec3e620-rkmwr",
+        "creationTimestamp": "2026-11-13T08:50:43Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:58Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:51:01Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:51:01Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:43Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "proxy",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T08:51:01Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-2:1.4.2"
+          }
+        ],
+        "initContainerStatuses": [
+          {
+            "name": "agent",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T08:50:54Z",
+                "finishedAt": "2026-11-13T08:50:55Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-1:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "payments",
+        "name": "inventory-0ab42bf018-ndfhs",
+        "creationTimestamp": "2026-11-15T02:46:14Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T02:46:14Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T02:46:42Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T02:46:42Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T02:46:14Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "exporter",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-15T02:46:21Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-3:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "payments",
+        "name": "checkout-3f57917a29-7dnjl",
+        "creationTimestamp": "2026-11-13T08:50:43Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:43Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:44Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:44Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:43Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "helper",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T08:50:44Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-1:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "payments",
+        "name": "mailer-225e3ea1f3-986f2",
+        "creationTimestamp": "2026-11-13T08:50:43Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:43Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:46Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:46Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:43Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-7",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T08:50:46Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-4:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "payments",
+        "name": "scheduler-b8a92162fa-xmkmg",
+        "creationTimestamp": "2026-11-15T08:51:28Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:30Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:41Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:41Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:28Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-8",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-15T08:51:30Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-1:1.4.2"
+          }
+        ],
+        "initContainerStatuses": [
+          {
+            "name": "agent",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-15T08:51:29Z",
+                "finishedAt": "2026-11-15T08:51:30Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-1:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "payments",
+        "name": "auth-service-e01519d080-q4ld9",
+        "creationTimestamp": "2026-11-15T08:51:28Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:28Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:40Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:40Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T08:51:28Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-9",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-15T08:51:29Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-1:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "storefront",
+        "name": "images-1dd2b87725-w7csf",
+        "creationTimestamp": "2026-11-16T11:36:26Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:36:26Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:36:56Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:36:56Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:36:26Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-10",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T11:36:26Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-5:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "storefront",
+        "name": "images-d4182bc8c7-nn4k4",
+        "creationTimestamp": "2026-11-16T11:35:55Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:35:55Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:36:26Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:36:26Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:35:55Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-10",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T11:35:56Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-5:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "storefront",
+        "name": "analytics-c13aa025c5-ztblb",
+        "creationTimestamp": "2026-11-16T11:35:55Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:35:55Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:35:56Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:35:56Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:35:55Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-11",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T11:35:56Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-5:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "telemetry",
+        "name": "exporter-jxvn6",
+        "creationTimestamp": "2026-11-16T11:31:39Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:39Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:50Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:50Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:39Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-12",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T11:31:40Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-6:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "telemetry",
+        "name": "exporter-7bgbq",
+        "creationTimestamp": "2026-11-16T11:31:39Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:39Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:51Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:51Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:39Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-12",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T11:31:40Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-6:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "telemetry",
+        "name": "exporter-29tkd",
+        "creationTimestamp": "2026-11-16T11:31:39Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:39Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:55Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:55Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:31:39Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-12",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T11:31:45Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-6:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "data",
+        "name": "search-index-eadb94b33f-689wv",
+        "creationTimestamp": "2026-11-16T01:22:00Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:22:00Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:22:31Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:22:31Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:22:00Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-10",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T01:22:15Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-7:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "data",
+        "name": "search-index-a625c4f610-wqqrh",
+        "creationTimestamp": "2026-11-16T01:21:39Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:21:39Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:22:00Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:22:00Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:21:39Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-10",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T01:21:40Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-7:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "data",
+        "name": "job-runner-ee0a728d46-4q226",
+        "creationTimestamp": "2026-11-16T01:21:39Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:21:39Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:21:40Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:21:40Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T01:21:39Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-11",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T01:21:40Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-7:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "catalog-p64vr",
+        "creationTimestamp": "2026-11-13T07:10:19Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:38Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:44Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:44Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:19Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-13",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:10:39Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-14",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:10:39Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-9:1.4.2"
+          }
+        ],
+        "initContainerStatuses": [
+          {
+            "name": "container-15",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:30Z",
+                "finishedAt": "2026-11-13T07:10:30Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-16",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:33Z",
+                "finishedAt": "2026-11-13T07:10:33Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-17",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:34Z",
+                "finishedAt": "2026-11-13T07:10:34Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-18",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:35Z",
+                "finishedAt": "2026-11-13T07:10:35Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-19",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:36Z",
+                "finishedAt": "2026-11-13T07:10:36Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-20",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:37Z",
+                "finishedAt": "2026-11-13T07:10:37Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "catalog-c4zmk",
+        "creationTimestamp": "2026-11-13T07:10:21Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:39Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:47Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:47Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:21Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-13",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:10:41Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-14",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:10:41Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-9:1.4.2"
+          }
+        ],
+        "initContainerStatuses": [
+          {
+            "name": "container-15",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:32Z",
+                "finishedAt": "2026-11-13T07:10:32Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-16",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:35Z",
+                "finishedAt": "2026-11-13T07:10:35Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-17",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:36Z",
+                "finishedAt": "2026-11-13T07:10:36Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-18",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:37Z",
+                "finishedAt": "2026-11-13T07:10:37Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-19",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:38Z",
+                "finishedAt": "2026-11-13T07:10:38Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-20",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:39Z",
+                "finishedAt": "2026-11-13T07:10:39Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "catalog-j7k89",
+        "creationTimestamp": "2026-11-13T07:10:21Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:41Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:49Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:49Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:21Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-13",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:10:43Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-14",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:10:42Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-9:1.4.2"
+          }
+        ],
+        "initContainerStatuses": [
+          {
+            "name": "container-15",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:33Z",
+                "finishedAt": "2026-11-13T07:10:33Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-16",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:36Z",
+                "finishedAt": "2026-11-13T07:10:36Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-17",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:37Z",
+                "finishedAt": "2026-11-13T07:10:37Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-18",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:38Z",
+                "finishedAt": "2026-11-13T07:10:38Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-19",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:39Z",
+                "finishedAt": "2026-11-13T07:10:39Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          },
+          {
+            "name": "container-20",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:10:40Z",
+                "finishedAt": "2026-11-13T07:10:40Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-8:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "ingest-f46d785bc2-chdnx",
+        "creationTimestamp": "2026-11-13T10:13:56Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:13:56Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:14:00Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:14:00Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:13:56Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-21",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T10:13:59Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-10:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "ingest-09cf8b5a50-gfk57",
+        "creationTimestamp": "2026-11-13T10:13:56Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:13:56Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:13:58Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:13:58Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:13:56Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-21",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T10:13:57Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-10:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "sessions-26vrc",
+        "creationTimestamp": "2026-11-13T07:13:02Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:02Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:06Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:06Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:02Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-22",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:13:06Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-11:1.4.2"
+          },
+          {
+            "name": "container-23",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:13:04Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-12:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "sessions-m4ljv",
+        "creationTimestamp": "2026-11-13T07:13:02Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:02Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:06Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:06Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:02Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-22",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:13:06Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-11:1.4.2"
+          },
+          {
+            "name": "container-23",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:13:04Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-12:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "sessions-6mngq",
+        "creationTimestamp": "2026-11-13T07:13:02Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:02Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:06Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:06Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:02Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-22",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:13:06Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-11:1.4.2"
+          },
+          {
+            "name": "container-23",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:13:04Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-12:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "uploader-j49j9",
+        "creationTimestamp": "2026-11-13T07:13:09Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:28Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:32Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:32Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:09Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-24",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:13:32Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-13:1.4.2"
+          }
+        ],
+        "initContainerStatuses": [
+          {
+            "name": "container-25",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:13:27Z",
+                "finishedAt": "2026-11-13T07:13:27Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-14:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "uploader-zsv56",
+        "creationTimestamp": "2026-11-13T07:13:09Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:20Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:29Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:29Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:09Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-24",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:13:29Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-13:1.4.2"
+          }
+        ],
+        "initContainerStatuses": [
+          {
+            "name": "container-25",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:13:19Z",
+                "finishedAt": "2026-11-13T07:13:19Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-14:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "uploader-xf8sc",
+        "creationTimestamp": "2026-11-13T07:13:09Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:20Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:29Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:29Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:13:09Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-24",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:13:29Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-13:1.4.2"
+          }
+        ],
+        "initContainerStatuses": [
+          {
+            "name": "container-25",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-13T07:13:19Z",
+                "finishedAt": "2026-11-13T07:13:19Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-14:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "metrics-relay-mzwxc",
+        "creationTimestamp": "2026-11-13T07:10:21Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:21Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:23Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:23Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:21Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-26",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:10:23Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-15:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "metrics-relay-qrlcl",
+        "creationTimestamp": "2026-11-13T07:10:21Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:21Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:23Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:23Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:21Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-26",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:10:23Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-15:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "metrics-relay-5zzh4",
+        "creationTimestamp": "2026-11-13T07:10:19Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:19Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:20Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:20Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:10:19Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-26",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:10:20Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-15:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "audit-log-5ae7dfebec-qcnrz",
+        "creationTimestamp": "2026-11-13T07:07:53Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:29Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:33Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:33Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:29Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-27",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:12:33Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-16:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "reconciler-9aae80e915-msv2r",
+        "creationTimestamp": "2026-11-13T07:07:53Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:29Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:34Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:34Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:29Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-28",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:12:34Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-17:1.4.2"
+          },
+          {
+            "name": "container-29",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:12:32Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-18:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "dispatcher-3029d70a90-q5wv5",
+        "creationTimestamp": "2026-11-13T07:08:14Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:29Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:32Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:32Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:29Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-30",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:12:32Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-19:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "dispatcher-b357befdbc-szm9p",
+        "creationTimestamp": "2026-11-13T07:08:14Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:29Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:32Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:32Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T07:12:29Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-30",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T07:12:32Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-19:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "kube-system",
+        "name": "workload-22-fefecfd5cf-5fbfq",
+        "creationTimestamp": "2026-11-15T09:43:28Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:43:28Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:43:52Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:43:52Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:43:28Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-31",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-15T09:43:30Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-20:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "queue",
+        "name": "workload-23-4d7eac6c42-45h64",
+        "creationTimestamp": "2026-11-13T08:47:54Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:47:54Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:48:19Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:48:19Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:47:54Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-32",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T08:47:56Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-21:1.4.2"
+          },
+          {
+            "name": "container-33",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T08:47:57Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-22:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "queue",
+        "name": "workload-24-19d73651ec-2k5w2",
+        "creationTimestamp": "2026-11-13T08:45:58Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:45:58Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:46:11Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:46:11Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:45:58Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-34",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T08:46:01Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-23:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "mail",
+        "name": "workload-25-658877e79d-8dp47",
+        "creationTimestamp": "2026-11-16T10:59:38Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:00:14Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:00:38Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:00:38Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T10:59:38Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-35",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T11:00:15Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-24:1.4.2"
+          },
+          {
+            "name": "container-10",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T11:00:15Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-24:1.4.2"
+          }
+        ],
+        "initContainerStatuses": [
+          {
+            "name": "container-36",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 0,
+                "reason": "Completed",
+                "startedAt": "2026-11-16T10:59:58Z",
+                "finishedAt": "2026-11-16T11:00:14Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-24:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "search",
+        "name": "workload-26-0",
+        "creationTimestamp": "2026-11-15T09:07:25Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:07:25Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:07:26Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:07:26Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:07:25Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-37",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-15T09:07:26Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-25:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "search",
+        "name": "workload-26-1",
+        "creationTimestamp": "2026-11-15T09:07:27Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:07:27Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:07:28Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:07:28Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-15T09:07:27Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-37",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-15T09:07:28Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-25:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "search",
+        "name": "workload-27-7dccf490e1-jgqfq",
+        "creationTimestamp": "2026-11-13T08:44:09Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:44:09Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:44:12Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:44:12Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:44:09Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-38",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T08:44:12Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-26:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "search",
+        "name": "workload-28-0",
+        "creationTimestamp": "2026-11-13T08:50:43Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:43Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:47Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:47Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T08:50:43Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-37",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T08:50:47Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-27:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "search",
+        "name": "workload-29-0",
+        "creationTimestamp": "2026-11-13T10:03:51Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:03:51Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:03:53Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:03:53Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T10:03:51Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-37",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-13T10:03:53Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-27:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "tools",
+        "name": "workload-30-1164dd4c46-b2wdm",
+        "creationTimestamp": "2026-11-14T05:46:16Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:46:16Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T05:48:33Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T05:48:33Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:46:16Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-39",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-14T05:47:20Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-28:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "tools",
+        "name": "workload-30-e201bfa3e4-z2rzr",
+        "creationTimestamp": "2026-11-14T05:47:27Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:47:27Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:48:48Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:48:48Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:47:27Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-39",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-14T05:48:40Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-28:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "tools",
+        "name": "workload-31-414d32772e-vd5n4",
+        "creationTimestamp": "2026-11-14T05:46:16Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:46:16Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:47:23Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:47:23Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:46:16Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-40",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-14T05:47:23Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-28:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "tools",
+        "name": "workload-31-f8abc42a1d-4bhv7",
+        "creationTimestamp": "2026-11-14T05:46:16Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:46:16Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:47:20Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:47:20Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:46:16Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-40",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-14T05:47:20Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-28:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "tools",
+        "name": "workload-32-592adfb3e7-k7ljs",
+        "creationTimestamp": "2026-11-14T05:46:16Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:46:16Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:47:23Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:47:23Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T05:46:16Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "container-40",
+            "ready": true,
+            "restartCount": 0,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-14T05:47:23Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/image-28:1.4.2"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "shop",
+        "name": "billing-api-7d9f6c-x2k4p",
+        "creationTimestamp": "2026-11-16T09:12:00Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T09:12:00Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T09:12:00Z"
+          },
+          {
+            "type": "Ready",
+            "status": "False",
+            "reason": "ContainersNotReady",
+            "message": "containers with unready status: [app]",
+            "lastTransitionTime": "2026-11-16T11:52:00Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "False",
+            "reason": "ContainersNotReady",
+            "message": "containers with unready status: [app]",
+            "lastTransitionTime": "2026-11-16T11:52:00Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "app",
+            "ready": false,
+            "restartCount": 12,
+            "state": {
+              "waiting": {
+                "reason": "CrashLoopBackOff",
+                "message": "back-off 5m0s restarting failed container=app pod=billing-api-7d9f6c-x2k4p"
+              }
+            },
+            "lastState": {
+              "terminated": {
+                "exitCode": 1,
+                "reason": "Error",
+                "startedAt": "2026-11-16T11:51:00Z",
+                "finishedAt": "2026-11-16T11:52:00Z"
+              }
+            },
+            "image": "registry.example.com/acme/billing-api:1.4.3"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "jobs",
+        "name": "import-28311-abcde",
+        "creationTimestamp": "2026-11-16T11:46:00Z"
+      },
+      "status": {
+        "phase": "Pending",
+        "conditions": [
+          {
+            "type": "PodScheduled",
+            "status": "False",
+            "reason": "Unschedulable",
+            "message": "0/3 nodes are available: insufficient memory",
+            "lastTransitionTime": "2026-11-16T11:46:00Z"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "shop",
+        "name": "cache-0",
+        "creationTimestamp": "2026-11-14T12:00:00Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T12:00:00Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T12:00:00Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T12:00:00Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-14T12:00:00Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "app",
+            "ready": true,
+            "restartCount": 1,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T09:00:00Z"
+              }
+            },
+            "lastState": {
+              "terminated": {
+                "exitCode": 137,
+                "reason": "OOMKilled",
+                "startedAt": "2026-11-16T09:00:00Z",
+                "finishedAt": "2026-11-16T11:40:00Z"
+              }
+            },
+            "image": "registry.example.com/acme/cache:7.2.0"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "shop",
+        "name": "web-5c8d7-q9wzt",
+        "creationTimestamp": "2026-11-13T12:00:00Z"
+      },
+      "status": {
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T12:00:00Z"
+          },
+          {
+            "type": "Ready",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T12:00:00Z"
+          },
+          {
+            "type": "ContainersReady",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T12:00:00Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-13T12:00:00Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "app",
+            "ready": true,
+            "restartCount": 7,
+            "state": {
+              "running": {
+                "startedAt": "2026-11-16T09:00:00Z"
+              }
+            },
+            "lastState": {
+              "terminated": {
+                "exitCode": 1,
+                "reason": "Error",
+                "startedAt": "2026-11-16T05:20:00Z",
+                "finishedAt": "2026-11-16T09:00:00Z"
+              }
+            },
+            "image": "registry.example.com/acme/web:2.9.1"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "shop",
+        "name": "report-6f2b1-m3kd8",
+        "creationTimestamp": "2026-11-16T11:58:00Z"
+      },
+      "status": {
+        "phase": "Pending",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:58:00Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T11:58:00Z"
+          },
+          {
+            "type": "Ready",
+            "status": "False",
+            "reason": "ContainersNotReady",
+            "message": "containers with unready status: [app]",
+            "lastTransitionTime": "2026-11-16T11:58:00Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "app",
+            "ready": false,
+            "restartCount": 0,
+            "state": {
+              "waiting": {
+                "reason": "ContainerCreating"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/report:3.0.4"
+          }
+        ]
+      }
+    },
+    {
+      "metadata": {
+        "namespace": "batch-test",
+        "name": "nightly-check-29110-zz9kq",
+        "creationTimestamp": "2026-11-16T03:00:00Z"
+      },
+      "status": {
+        "phase": "Failed",
+        "reason": "Error",
+        "conditions": [
+          {
+            "type": "Initialized",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T03:00:00Z"
+          },
+          {
+            "type": "PodScheduled",
+            "status": "True",
+            "lastTransitionTime": "2026-11-16T03:00:00Z"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "name": "app",
+            "ready": false,
+            "restartCount": 0,
+            "state": {
+              "terminated": {
+                "exitCode": 1,
+                "reason": "Error",
+                "startedAt": "2026-11-16T03:01:00Z",
+                "finishedAt": "2026-11-16T03:02:00Z"
+              }
+            },
+            "lastState": {},
+            "image": "registry.example.com/acme/nightly-check:1.0.0"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+<%# The Kubernetes status block. Other plugins can render it: render partial: "rubylode_k8s/status"
+    Optional locals: title (replaces the block title), show_title (false hides it), compact (true gives the small variant
+    for the sides of other pages: no pod detail column). It draws nothing for a person the settings do not allow, and a
+    hint for administrators while the plugin is not set up.
+    Rubylode Status passes widget and status: the Status page then draws the title and the summary, and this draws the rest. %>
+<% settings = RubylodeK8s::Settings.current %>
+<% if settings.visible_to?(User.current) %>
+  <% @rubylode_k8s_rendered = true %>
+  <% stylesheet = stylesheet_link_tag("rubylode_k8s", plugin: "redmine_rubylode_k8s") %>
+  <%# A full page takes the stylesheet in its head; an AJAX render has no head, so it carries the link itself. %>
+  <%# With no request at all (the macro in a notification email) there is no head to put it in, and no stylesheet is wanted. %>
+  <% if request&.xhr? %><%= stylesheet %><% elsif request %><% content_for :header_tags, stylesheet %><% end %>
+  <% block_title = local_assigns[:title].presence || settings.block_title %>
+  <% compact = local_assigns.fetch(:compact, false) %>
+  <% on_status_page = local_assigns.key?(:widget) %>
+  <% show_title = local_assigns.fetch(:show_title, true) && !on_status_page %>
+  <% clusters = settings.clusters %>
+  <%# A name is a link only when its pattern expands to an http or https address; otherwise it stays text. %>
+  <% link_or_text = ->(text, address) { address ? link_to(text, address) : text } %>
+  <% if clusters.any? || User.current.admin? %>
+    <div class="rubylode-k8s<%= " is-compact" if compact %>">
+      <% if show_title %><h3 class="rubylode-k8s-title"><%= block_title %></h3><% end %>
+      <% if clusters.any? %>
+        <% reports = clusters.map { |cluster| RubylodeK8s::ClusterStatus.report_for(cluster, settings) } %>
+        <% unless on_status_page %>
+          <% summary = RubylodeK8s::ClusterStatus.summary_for(reports) %>
+          <p class="rubylode-k8s-summary is-<%= summary.state.to_s.dasherize %>"><%= summary.text %></p>
+        <% end %>
+        <% clusters.zip(reports).each do |cluster, report| %>
+          <div class="rubylode-k8s-cluster">
+            <% links = settings.links_for(cluster.name) %>
+            <h3 class="rubylode-k8s-cluster-name"><%= link_or_text.call(cluster.name, RubylodeK8s::LinkTemplate.link_for(links.cluster)) %></h3>
+            <% if report.unavailable? %>
+              <p class="rubylode-k8s-unavailable"><%= l("rubylode_k8s.status.unavailable") %></p>
+              <% if User.current.admin? %>
+                <p class="rubylode-k8s-hint"><%= l("rubylode_k8s.hints.reason", reason: report.failure_reason) %></p>
+              <% end %>
+            <% else %>
+              <table class="list rubylode-k8s-table">
+                <thead>
+                  <tr>
+                    <th><%= l("rubylode_k8s.columns.node") %></th>
+                    <th><%= l("rubylode_k8s.columns.status") %></th>
+                    <th><%= l("rubylode_k8s.columns.cpu") %></th>
+                    <th><%= l("rubylode_k8s.columns.memory") %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% report.node_rows.each do |row| %>
+                    <tr class="rubylode-k8s-node">
+                      <td class="rubylode-k8s-node-name"><%= link_or_text.call(row.name, RubylodeK8s::LinkTemplate.link_for(links.node, node: row.name)) %></td>
+                      <td class="rubylode-k8s-node-status is-<%= row.status.underscore.dasherize %>"><%= ([row.status] + [row.failing_conditions.join(", ")].reject(&:empty?)).join(": ") %></td>
+                      <% { cpu: row.cpu_percent, memory: row.memory_percent }.each do |resource, percent| %>
+                        <td class="rubylode-k8s-usage">
+                          <% if percent.nil? %>
+                            <span class="rubylode-k8s-no-metrics"><%= l("rubylode_k8s.status.no_metrics") %></span>
+                          <% else %>
+                            <% whole = RubylodeK8s::UsageLevel.clamp(percent) %>
+                            <span class="rubylode-k8s-bar is-<%= RubylodeK8s::UsageLevel.for(percent) %>" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="<%= whole %>" aria-label="<%= l("rubylode_k8s.columns.#{resource}") %>">
+                              <span class="rubylode-k8s-bar-fill" style="width: <%= whole %>%"></span>
+                            </span>
+                            <span class="rubylode-k8s-percent"><%= whole %>%</span>
+                          <% end %>
+                        </td>
+                      <% end %>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+              <% if !report.metrics_available && User.current.admin? && report.metrics_failure_reason.present? %>
+                <p class="rubylode-k8s-hint"><%= l("rubylode_k8s.hints.metrics_reason", reason: report.metrics_failure_reason) %></p>
+              <% end %>
+              <% if report.pods_failure_reason.present? %>
+                <p class="rubylode-k8s-pods-unchecked"><%= l("rubylode_k8s.status.pods_unchecked") %></p>
+                <% if User.current.admin? %>
+                  <p class="rubylode-k8s-hint"><%= l("rubylode_k8s.hints.pods_reason", reason: report.pods_failure_reason) %></p>
+                <% end %>
+              <% else %>
+                <% trouble_pods = Array(report.trouble_pods) %>
+                <% if trouble_pods.any? %>
+                  <table class="list rubylode-k8s-table rubylode-k8s-pods-table">
+                    <thead>
+                      <tr>
+                        <th><%= l("rubylode_k8s.columns.namespace") %></th>
+                        <th><%= l("rubylode_k8s.columns.pod") %></th>
+                        <th><%= l("rubylode_k8s.columns.phase") %></th>
+                        <th><%= l("rubylode_k8s.columns.reason") %></th>
+                        <% unless compact %><th><%= l("rubylode_k8s.columns.detail") %></th><% end %>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% trouble_pods.each do |trouble_pod| %>
+                        <tr class="rubylode-k8s-pod">
+                          <td class="rubylode-k8s-pod-namespace"><%= trouble_pod.namespace %></td>
+                          <td class="rubylode-k8s-pod-name"><%= link_or_text.call(trouble_pod.name, RubylodeK8s::LinkTemplate.link_for(links.pod, namespace: trouble_pod.namespace, pod: trouble_pod.name)) %></td>
+                          <td class="rubylode-k8s-pod-phase"><%= trouble_pod.phase %></td>
+                          <td class="rubylode-k8s-pod-reason"><%= trouble_pod.reason %></td>
+                          <% unless compact %><td class="rubylode-k8s-pod-detail"><%= trouble_pod.detail(Time.current) %></td><% end %>
+                        </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                  <% if report.more_trouble_count.to_i.positive? %>
+                    <p class="rubylode-k8s-pods-more"><%= l("rubylode_k8s.pods.more_in_trouble", count: report.more_trouble_count) %></p>
+                  <% end %>
+                <% end %>
+                <% if report.pods_truncated %>
+                  <p class="rubylode-k8s-pods-truncated"><%= l("rubylode_k8s.pods.truncated", count: report.pods_checked_count) %></p>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      <% elsif User.current.admin? %>
+        <p class="rubylode-k8s-hint">
+          <%= l("rubylode_k8s.hints.not_configured") %>
+          <%= link_to l("rubylode_k8s.hints.not_configured_link"), plugin_settings_path(RubylodeK8s::Settings::PLUGIN_ID) %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
