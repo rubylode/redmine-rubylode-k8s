@@ -2,6 +2,14 @@
 
 All notable changes to this plugin. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.1] - 2026-11-19
+
+No change to what the plugin does.
+
+### Changed
+
+- The publishing job stops early, with a clear message, when the GitHub token is empty.
+
 ## [1.0.0] - 2026-11-18
 
 First release. It shows the health of the nodes and the pods in trouble of one or more Kubernetes clusters inside Redmine, read only.

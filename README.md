@@ -14,7 +14,7 @@ TL;DR: this plugin shows the health of one or more [Kubernetes](https://kubernet
 in trouble and why. It comes as a wiki macro, a page, a My page block and a partial, and it puts its block on the
 [Rubylode Status](https://github.com/rubylode/redmine-rubylode-status) page when that plugin is installed.
 
-Each cluster's token stays in an environment variable and the plugin only reads. Version 1.0.0, needs Redmine 5.1 or newer
+Each cluster's token stays in an environment variable and the plugin only reads. Version 1.0.1, needs Redmine 5.1 or newer
 and Kubernetes 1.28 or newer. `docs/roadmap/ROADMAP.md` lists what is not done.
 
 ![Two clusters: one answering with a node that is not ready and four pods in trouble, one that cannot be reached](docs/screenshots/status-trouble.png)
@@ -71,7 +71,7 @@ database migrations.
 
 From the release zip:
 
-1. Download `redmine_rubylode_k8s-1.0.0.zip` from the
+1. Download `redmine_rubylode_k8s-1.0.1.zip` from the
    [releases page](https://github.com/rubylode/redmine-rubylode-k8s/releases). A `.sha256` file sits next to it.
 2. Unpack it into Redmine's `plugins/` directory. The folder inside is already named `redmine_rubylode_k8s`.
 
