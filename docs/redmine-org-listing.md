@@ -13,15 +13,15 @@ The text to paste at www.redmine.org, Plugins, New plugin. The plugin is not lis
 
 ## Notes for this version
 
-Version 1.0.0, the first release. The health of the nodes and the pods in trouble of one or more Kubernetes clusters, read only: a wiki macro, a page, a My page block and a partial, and a block on the Rubylode Status page. Needs Redmine 5.1 or newer and Kubernetes 1.28 or newer. No database migration. Install and settings are described in the README at https://github.com/rubylode/redmine-rubylode-k8s.
+Version 1.0.1. The health of the nodes and the pods in trouble of one or more Kubernetes clusters, read only: a wiki macro, a page, a My page block and a partial, and a block on the Rubylode Status page. Needs Redmine 5.1 or newer and Kubernetes 1.28 or newer. No database migration. Install and settings are described in the README at https://github.com/rubylode/redmine-rubylode-k8s.
 
 ## File to upload
 
-`redmine_rubylode_k8s-1.0.0.zip`, the file the GitHub release workflow publishes when a `v1.0.0` tag is pushed. Upload the same file that is attached to the GitHub release.
+`redmine_rubylode_k8s-1.0.1.zip`, the file the GitHub release workflow publishes when a `v1.0.1` tag is pushed. Upload the same file that is attached to the GitHub release.
 
 ## Checking the result
 
-The name, author and version in the listing must match what the plugin registers (`Rubylode Kubernetes`, `Rubylode`, `1.0.0`). When they do, Administration, Plugins, Check for updates shows:
+The name, author and version in the listing must match what the plugin registers (`Rubylode Kubernetes`, `Rubylode`, `1.0.1`). When they do, Administration, Plugins, Check for updates shows:
 
 - a green tick: the installed version is the latest one listed on redmine.org;
 - an amber warning: redmine.org lists a newer version than the installed one;
