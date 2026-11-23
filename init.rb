@@ -23,7 +23,7 @@ Redmine::Plugin.register :redmine_rubylode_k8s do
   author_url "https://github.com/rubylode"
   url "https://github.com/rubylode/redmine-rubylode-k8s"
   description "The health of the nodes and pods of one or more Kubernetes clusters, read from the Kubernetes API"
-  version "1.0.1"
+  version "1.1.0"
   requires_redmine version_or_higher: "5.1.0"
 
   # A link to the page in the top menu, shown only when the settings ask for it and only to the people allowed to see the block.
