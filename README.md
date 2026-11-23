@@ -14,7 +14,7 @@ TL;DR: this plugin shows the health of one or more [Kubernetes](https://kubernet
 in trouble and why. It comes as a wiki macro, a page, a My page block and a partial, and it puts its block on the
 [Rubylode Status](https://github.com/rubylode/redmine-rubylode-status) page when that plugin is installed.
 
-Each cluster's token stays in an environment variable and the plugin only reads. Version 1.0.1, needs Redmine 5.1 or newer
+Each cluster's token stays in an environment variable and the plugin only reads. Version 1.1.0, needs Redmine 5.1 or newer
 and Kubernetes 1.28 or newer. `docs/roadmap/ROADMAP.md` lists what is not done.
 
 ![Two clusters: one answering with a node that is not ready and four pods in trouble, one that cannot be reached](docs/screenshots/status-trouble.png)
@@ -71,7 +71,7 @@ database migrations.
 
 From the release zip:
 
-1. Download `redmine_rubylode_k8s-1.0.1.zip` from the
+1. Download `redmine_rubylode_k8s-1.1.0.zip` from the
    [releases page](https://github.com/rubylode/redmine-rubylode-k8s/releases). A `.sha256` file sits next to it.
 2. Unpack it into Redmine's `plugins/` directory. The folder inside is already named `redmine_rubylode_k8s`.
 
@@ -229,6 +229,11 @@ Rules:
 - Only `http` and `https` links are accepted, with a host and no user name.
 - Braces are reserved: a literal `{` or `}` anywhere else makes the line refused.
 - No token is ever sent to a link. Redmine never calls it.
+
+A cluster with a cluster link also gets a visible link, "Open the cluster's page", right-aligned on the line of its
+heading, wherever the block is drawn (the page, the Status page, My page, the macro and the other places). It shows
+when the cluster cannot be reached, and not at all for a cluster without a cluster link. It uses the same cluster link
+and the same rules, so there is no extra setting.
 
 For example, with Argo CD (the pod name goes into its application search):
 

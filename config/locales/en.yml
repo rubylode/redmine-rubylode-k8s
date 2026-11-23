@@ -97,6 +97,7 @@ en:
       detail: Detail
     status:
       unavailable: Status unavailable
+      open_cluster_page: "Open the cluster's page"
       no_metrics: no metrics
       pods_unchecked: Pods could not be checked
       not_set_up: Kubernetes is not set up yet

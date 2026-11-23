@@ -2,6 +2,12 @@
 
 All notable changes to this plugin. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.1.0] - 2026-11-23
+
+### Added
+
+- A link "Open the cluster's page" on the line of each cluster heading, drawn wherever the block shows, also when the cluster cannot be reached. It goes to the cluster link of the Links setting, and a cluster without one gets no link.
+
 ## [1.0.1] - 2026-11-19
 
 No change to what the plugin does.

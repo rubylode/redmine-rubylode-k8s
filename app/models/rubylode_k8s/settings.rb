@@ -104,6 +104,12 @@ module RubylodeK8s
       LinkPatterns.new(cluster: "", node: "", pod: "")
     end
 
+    # The address the visible "Open the cluster's page" link goes to: the cluster link of that cluster, when it is an
+    # http or https address. Nil when there is none, so no link is drawn.
+    def source_link_address(cluster_name)
+      LinkTemplate.link_for(links_for(cluster_name).cluster)
+    end
+
     def block_title
       title = @values["block_title"].to_s.strip
       title.empty? ? DEFAULT_BLOCK_TITLE : title

@@ -29,7 +29,13 @@
         <% clusters.zip(reports).each do |cluster, report| %>
           <div class="rubylode-k8s-cluster">
             <% links = settings.links_for(cluster.name) %>
-            <h3 class="rubylode-k8s-cluster-name"><%= link_or_text.call(cluster.name, RubylodeK8s::LinkTemplate.link_for(links.cluster)) %></h3>
+            <% source_link_address = settings.source_link_address(cluster.name) %>
+            <div class="rubylode-k8s-cluster-head">
+              <h3 class="rubylode-k8s-cluster-name"><%= link_or_text.call(cluster.name, RubylodeK8s::LinkTemplate.link_for(links.cluster)) %></h3>
+              <% if source_link_address %>
+                <%= link_to l("rubylode_k8s.status.open_cluster_page"), source_link_address, class: "rubylode-k8s-source-link external" %>
+              <% end %>
+            </div>
             <% if report.unavailable? %>
               <p class="rubylode-k8s-unavailable"><%= l("rubylode_k8s.status.unavailable") %></p>
               <% if User.current.admin? %>

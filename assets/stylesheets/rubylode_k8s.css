@@ -78,8 +78,20 @@ body.dark .rubylode-k8s {
   margin-bottom: var(--rubylode-k8s-gap);
 }
 
+.rubylode-k8s-cluster-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
 .rubylode-k8s-cluster-name {
   margin: 0 0 4px;
+}
+
+.rubylode-k8s-source-link {
+  margin-left: auto;
+  text-align: right;
 }
 
 .rubylode-k8s-unavailable {
